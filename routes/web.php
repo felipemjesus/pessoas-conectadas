@@ -12,3 +12,4 @@
 */
 
 Route::get('/', 'PessoasController@index');
+Route::get('/pessoas/create', 'PessoasController@create');

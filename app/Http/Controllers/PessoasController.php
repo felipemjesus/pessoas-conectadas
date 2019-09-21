@@ -12,4 +12,9 @@ class PessoasController extends Controller
         $pessoas = Pessoa::all();
         return view('pessoas.index', compact('pessoas'));
     }
+
+    public function create()
+    {
+        return view('pessoas.create');
+    }
 }
