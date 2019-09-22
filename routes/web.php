@@ -15,5 +15,6 @@ Route::get('/', 'PessoasController@index')->name('pessoas.index');
 Route::get('/pessoas/create', 'PessoasController@create')->name('pessoas.create');
 Route::post('/pessoas/store','PessoasController@store')->name('pessoas.store');
 Route::get('/pessoas/{id}/edit', 'PessoasController@edit')->name('pessoas.edit');
+Route::put('/pessoas/{id}/update', 'PessoasController@update')->name('pessoas.update');
 Route::get('/pessoas/{id}/view', 'PessoasController@view')->name('pessoas.view');
-Route::get('/pessoas/{id}/destroy', 'PessoasController@destroy')->name('pessoas.destroy');
+Route::delete('/pessoas/{id}/destroy', 'PessoasController@destroy')->name('pessoas.destroy');

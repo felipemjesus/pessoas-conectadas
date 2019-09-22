@@ -23,11 +23,18 @@ class PessoaRequest extends FormRequest
      */
     public function rules()
     {
-        return [
+        $rules = [
             'nome' => 'required',
             'foto' => 'required:image',
             'email' => 'email|unique:pessoas',
             'localidade' => 'required'
         ];
+
+        if ($this->id) {
+            $rules['foto'] = 'image';
+            $rules['email'] .= ',email,' . $this->id;
+        }
+
+        return $rules;
     }
 }

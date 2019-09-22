@@ -36,4 +36,13 @@ class Pessoa extends Model
             ->get()
             ->toArray();
     }
+
+    public function interessesTextarea()
+    {
+        $interesses = array_map(function ($interesse) {
+            return $interesse['descricao'];
+        }, $this->interesses->toArray());
+
+        return implode("\r\n", $interesses);
+    }
 }
