@@ -50,9 +50,9 @@ class PessoasController extends Controller
 
     public function destroy($id)
     {
-        Pessoa::find($id)
-            ->detach()
-            ->delete();
+        $pessoa = Pessoa::find($id);
+        $pessoa->interesses()->detach();
+        $pessoa->delete();
         return redirect()
             ->route('pessoas.index')
             ->with('success', 'Pessoa deletada com sucesso!');
