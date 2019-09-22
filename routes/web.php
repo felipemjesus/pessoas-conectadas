@@ -13,3 +13,4 @@
 
 Route::get('/', 'PessoasController@index');
 Route::get('/pessoas/create', 'PessoasController@create');
+Route::post('/pessoas/store','PessoasController@store');
