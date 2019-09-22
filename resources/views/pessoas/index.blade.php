@@ -34,7 +34,12 @@
                         <td>
                             <a href="{{ route('pessoas.view', ['id' => $pessoa->id]) }}" class="btn btn-secondary btn-sm">Visualizar</a>
                             <a href="{{ route('pessoas.edit', ['id' => $pessoa->id]) }}" class="btn btn-success btn-sm">Editar</a>
-                            <a href="{{ route('pessoas.destroy', ['id' => $pessoa->id]) }}" class="btn btn-danger btn-sm">Deletar</a>
+                            <a href="#" class="btn btn-danger btn-sm"
+                               onclick="if (confirm('Tem certeza que deseja deletar?')) { document.getElementById('destroy{{ $pessoa->id }}').submit(); } event.returnValue = false; return false;">
+                                Deletar
+                            </a>
+                            {!! Form::open(['route' => ['pessoas.destroy', $pessoa->id], 'method' => 'delete', 'class' => 'hidden', 'id' => 'destroy' . $pessoa->id]) !!}
+                            {!! Form::close() !!}
                         </td>
                     </tr>
                 @endforeach

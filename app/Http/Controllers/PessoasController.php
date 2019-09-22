@@ -29,7 +29,9 @@ class PessoasController extends Controller
     public function store(PessoaRequest $request)
     {
         Pessoa::saveRequest($request->all());
-        return redirect('/')->with('success', 'Pessoa cadastrada com sucesso!');
+        return redirect()
+            ->route('pessoas.index')
+            ->with('success', 'Pessoa cadastrada com sucesso!');
     }
 
     public function edit($id)
@@ -41,7 +43,19 @@ class PessoasController extends Controller
     public function update(PessoaRequest $request, $id)
     {
         Pessoa::saveRequest($request->all(), $id);
-        return redirect('/')->with('success', 'Pessoa editada com sucesso!');
+        return redirect()
+            ->route('pessoas.index')
+            ->with('success', 'Pessoa editada com sucesso!');
+    }
+
+    public function destroy($id)
+    {
+        Pessoa::find($id)
+            ->detach()
+            ->delete();
+        return redirect()
+            ->route('pessoas.index')
+            ->with('success', 'Pessoa deletada com sucesso!');
     }
 }
 
