@@ -15,6 +15,12 @@ class PessoasController extends Controller
         return view('pessoas.index', compact('pessoas'));
     }
 
+    public function view($id)
+    {
+        $pessoa = Pessoa::find($id);
+        return view('pessoas.view', compact('pessoa'));
+    }
+
     public function create()
     {
         return view('pessoas.create');

@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col">
             <h1>Pessoas</h1>
-            <a href="{{ url('pessoas/create') }}" class="btn btn-primary float-right mb-2">Cadastrar</a>
+            <a href="{{ route('pessoas.create') }}" class="btn btn-primary float-right mb-2">Cadastrar</a>
         </div>
     </div>
     <div class="row">
@@ -36,9 +36,9 @@
                         <td>{{ date_create_from_format('Y-m-d', $pessoa->data_nascimento)->format('d/m/Y') }}</td>
                         <td>{{ $pessoa->localidade }}</td>
                         <td>
-                            <a href="{{ url('pessoas/view', $pessoa->id) }}" class="btn btn-secondary btn-sm">Visualizar</a>
-                            <a href="{{ url('pessoas/edit', $pessoa->id) }}" class="btn btn-success btn-sm">Editar</a>
-                            <a href="{{ url('pessoas/destroy', $pessoa->id) }}" class="btn btn-danger btn-sm">Deletar</a>
+                            <a href="{{ route('pessoas.view', ['id' => $pessoa->id]) }}" class="btn btn-secondary btn-sm">Visualizar</a>
+                            <a href="{{ route('pessoas.edit', ['id' => $pessoa->id]) }}" class="btn btn-success btn-sm">Editar</a>
+                            <a href="{{ route('pessoas.destroy', ['id' => $pessoa->id]) }}" class="btn btn-danger btn-sm">Deletar</a>
                         </td>
                     </tr>
                 @endforeach

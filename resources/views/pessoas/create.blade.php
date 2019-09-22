@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col">
             <h1>Cadastrar Pessoa</h1>
-            <a href="{{ url('/') }}" class="btn btn-secondary float-right mb-2">Listar</a>
+            <a href="{{ route('pessoas.index') }}" class="btn btn-secondary float-right mb-2">Listar</a>
         </div>
     </div>
     <div class="row">
@@ -20,7 +20,7 @@
     </div>
     <div class="row">
         <div class="col">
-            {!! Form::open(['url' => 'pessoas/store', 'files' => true]) !!}
+            {!! Form::open(['route' => 'pessoas.store', 'files' => true]) !!}
             <div class="form-group">
                 {!! Form::label('nome', 'Nome') !!}
                 {!! Form::text('nome', null, ['class' => 'form-control']) !!}

@@ -11,6 +11,9 @@
 |
 */
 
-Route::get('/', 'PessoasController@index');
-Route::get('/pessoas/create', 'PessoasController@create');
-Route::post('/pessoas/store','PessoasController@store');
+Route::get('/', 'PessoasController@index')->name('pessoas.index');
+Route::get('/pessoas/create', 'PessoasController@create')->name('pessoas.create');
+Route::post('/pessoas/store','PessoasController@store')->name('pessoas.store');
+Route::get('/pessoas/{id}/edit', 'PessoasController@edit')->name('pessoas.edit');
+Route::get('/pessoas/{id}/view', 'PessoasController@view')->name('pessoas.view');
+Route::get('/pessoas/{id}/destroy', 'PessoasController@destroy')->name('pessoas.destroy');

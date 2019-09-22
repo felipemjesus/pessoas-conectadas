@@ -12,4 +12,28 @@ class Pessoa extends Model
     {
         return $this->belongsToMany('App\Interesse', 'pessoas_interesses');
     }
+
+    public function pessoasRelacionadas()
+    {
+        if ($this->interesses->isEmpty()) {
+            return $this->relacionadasPorLocalidade();
+        }
+
+        $pessoasRelacionadas = [];
+        foreach ($this->interesses as $interesse) {
+            $pessoasRelacionadas = array_merge($pessoasRelacionadas, $interesse->pessoas->toArray());
+            $pessoasRelacionadas = array_filter($pessoasRelacionadas, function ($pessoasRelacionada) {
+                return $pessoasRelacionada['id'] != $this->id ? $pessoasRelacionada : null;
+            });
+        }
+        return $pessoasRelacionadas;
+    }
+
+    public function relacionadasPorLocalidade()
+    {
+        return $this->where('localidade', $this->localidade)
+            ->where('id', '!=', $this->id)
+            ->get()
+            ->toArray();
+    }
 }
