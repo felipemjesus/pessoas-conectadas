@@ -7,17 +7,8 @@
             <a href="{{ route('pessoas.index') }}" class="btn btn-secondary float-right mb-2">Listar</a>
         </div>
     </div>
-    <div class="row">
-        <div class="col">
-            @if($errors->any())
-                <ul class="alert alert-warning">
-                    @foreach($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            @endif
-        </div>
-    </div>
+    @component('components.errors')
+    @endcomponent
     <div class="row">
         <div class="col">
             {!! Form::open(['route' => 'pessoas.store', 'files' => true]) !!}

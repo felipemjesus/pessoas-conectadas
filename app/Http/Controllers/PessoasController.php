@@ -28,21 +28,7 @@ class PessoasController extends Controller
 
     public function store(PessoaRequest $request)
     {
-        $pessoaRequest = $request->all();
-
-        // realiza o upload da foto
-        $foto = $pessoaRequest['foto']->store('public');
-        $pessoaRequest['foto'] = $foto;
-
-        // realiza o cadastro dos interesses e retorna os ids de cada
-        $interesses = Interesse::saveMany($pessoaRequest['interesses']);
-
-        // salva os dados da pesso
-        $pessoa = Pessoa::create($pessoaRequest);
-
-        // vincula os interesses a pessoa
-        $pessoa->interesses()->attach($interesses);
-
+        Pessoa::saveRequest($request->all());
         return redirect('/')->with('success', 'Pessoa cadastrada com sucesso!');
     }
 
@@ -54,25 +40,7 @@ class PessoasController extends Controller
 
     public function update(PessoaRequest $request, $id)
     {
-        $pessoaRequest = $request->all();
-
-        // realiza o upload da foto
-        if (isset($pessoaRequest['foto'])) {
-            $foto = $pessoaRequest['foto']->store('public');
-            $pessoaRequest['foto'] = $foto;
-        }
-
-        // realiza o cadastro dos interesses e retorna os ids de cada
-        $interesses = Interesse::saveMany($pessoaRequest['interesses']);
-
-        // atualiza os dados da pessoa
-        $pessoa = Pessoa::find($id);
-        $pessoa->update($pessoaRequest);
-
-        // remove todos os interesses e vincula os interesses a pessoa
-        $pessoa->interesses()->detach();
-        $pessoa->interesses()->attach($interesses);
-
+        Pessoa::saveRequest($request->all(), $id);
         return redirect('/')->with('success', 'Pessoa editada com sucesso!');
     }
 }

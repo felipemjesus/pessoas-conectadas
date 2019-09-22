@@ -7,15 +7,11 @@
             <a href="{{ route('pessoas.create') }}" class="btn btn-primary float-right mb-2">Cadastrar</a>
         </div>
     </div>
-    <div class="row">
-        <div class="col">
-            @if (session('success'))
-                <div class="alert alert-success">
-                    {{ session('success') }}
-                </div>
-            @endif
-        </div>
-    </div>
+    @if (session('success'))
+        @component('components.alert', ['type' => 'success'])
+            {{ session('success') }}
+        @endcomponent
+    @endif
     <div class="row">
         <div class="col">
             <table class="table table-striped table-bordered table-hover">
