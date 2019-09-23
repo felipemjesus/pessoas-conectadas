@@ -24,23 +24,31 @@ class Interesse extends Model
      */
     public static function saveMany($interesses)
     {
+        // verifica se não preencheu algum interesses
+        if (empty($interesses)) {
+            return [];
+        }
+
         $interessesIds = [];
+
+        // transforma em array os interesses colocados por linha
         $interessesExplode = explode("\r\n", $interesses);
 
         foreach ($interessesExplode as $value) {
             $slug = Str::slug($value, '-');
             try {
+                // cadastro de interesse
                 $interesse = self::create([
                     'descricao' => $value,
                     'slug' => $slug
                 ]);
                 $interessesIds[] = $interesse->id;
             } catch (QueryException $e) {
+                // caso ja existe, retorna o ID do interesse
                 $interesse = self::where('slug', $slug)->first();
                 $interessesIds[] = $interesse->id;
             }
         }
-
         return $interessesIds;
     }
 }
