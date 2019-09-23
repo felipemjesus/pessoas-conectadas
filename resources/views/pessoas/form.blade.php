@@ -31,3 +31,48 @@
         {!! Form::close() !!}
     </div>
 </div>
+@section('script')
+    <script>
+        $('form').submit(function (e) {
+            $('.help-block').remove();
+            var pessoa = $(this).serializeArray()
+            var camposObrigatorios = ['nome', 'foto', 'localidade'];
+            var errors = true;
+
+            pessoa.forEach(function (input) {
+                // verifica se possuem campos obrigatorios não preenchidos
+                if (camposObrigatorios.indexOf(input.name) >= 0 && input.value == "") {
+                    $('input[name=' + input.name + ']').parent().append(
+                        $('<span/>')
+                            .addClass('help-block text-danger')
+                            .html('Preenchimento obrigatório')
+                    )
+                    errors = false
+                }
+
+                // verifica se todos os interesses informados possuem no minimo 3 caracteres
+                if (input.name == 'interesses' && input.value != "" && !validarInteresses(input.value)) {
+                    $('textarea[name=' + input.name + ']').parent().append(
+                        $('<span/>')
+                            .addClass('help-block text-danger')
+                            .html('O interesse deve ter no mínimo 3 caracteres')
+                    )
+                    errors = false
+                }
+            })
+            return errors
+        })
+
+        // metodo verifica se todos os interesses informados possuem no minimo 3 caracteres
+        function validarInteresses(value) {
+            var interesses = value.split('\r\n')
+            for (let interesse of interesses) {
+                console.log(interesse.length)
+                if (interesse.length < 3) {
+                    return false
+                }
+            }
+            return true
+        }
+    </script>
+@endsection

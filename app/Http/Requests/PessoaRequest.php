@@ -26,7 +26,7 @@ class PessoaRequest extends FormRequest
         $rules = [
             'nome' => 'required',
             'foto' => 'required:image',
-            'email' => 'email|unique:pessoas',
+            'email' => 'nullable|email|unique:pessoas',
             'localidade' => 'required'
         ];
 
