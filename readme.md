@@ -1,4 +1,4 @@
-## Avaliação Técnica do CGSAG para vaga DAS 102.3 (Desenvolvedor PHP)
+## Avaliação Técnica para Desenvolvedor PHP
 
 ### Objetivo
 Desenvolver uma aplicação simples, em PHP, onde pessoas serão cadastradas e conectadas por seus interesses em comum ou próximidade (localidade).
